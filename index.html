@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QR Empreinte Entreprise — Prototype</title>
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+</head>
+<body>
+<header>
+  <h1>QR Empreinte Entreprise <small style="color:#fff9;font-weight:400">prototype</small></h1>
+  <nav>
+    <button data-v="dash" onclick="show('dash')">Tableau de bord</button>
+    <button data-v="admin" onclick="show('admin')">Sites &amp; emplacements</button>
+    <button data-v="qrs" onclick="show('qrs')">QR signés</button>
+    <button data-v="scan" onclick="show('scan')">Formulaire client</button>
+  </nav>
+</header>
+<main>
+
+<!-- Dashboard -->
+<section id="v-dash" class="view">
+  <div class="card row">
+    <select id="d-ent" onchange="render()"></select>
+    <button class="btn sec" onclick="demo()">Charger la démo Sénégal</button>
+    <button class="btn sec" onclick="exportCSV()">Exporter CSV</button>
+    <button class="btn sec" onclick="reset()">Réinitialiser</button>
+  </div>
+  <div class="grid" id="d-kpi"></div>
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr))">
+    <div class="card"><h3>Où : par site</h3><div id="d-sites"></div></div>
+    <div class="card"><h3>Où : par emplacement</h3><div id="d-emps"></div></div>
+    <div class="card"><h3>Quel type de problème</h3><div id="d-cats"></div></div>
+    <div class="card"><h3>Quand : par créneau horaire</h3><div id="d-hours"></div></div>
+  </div>
+  <div class="card"><h3>Derniers retours</h3><div id="d-last"></div></div>
+</section>
+
+<!-- Admin -->
+<section id="v-admin" class="view">
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+    <div class="card"><h3>1. Entreprise</h3>
+      <input id="e-nom" placeholder="Ex. CBAO, Orange Sénégal, Terrou-Bi">
+      <select id="e-sect"><option>Banque</option><option>Télécoms</option><option>Distribution</option><option>Hôtellerie / Restauration</option><option>Services publics</option><option>Énergie / Eau</option><option>Transport</option><option>PME</option></select>
+      <button class="btn" onclick="addEntreprise()">Ajouter</button></div>
+    <div class="card"><h3>2. Site</h3>
+      <select id="s-ent"></select>
+      <input id="s-nom" placeholder="Ex. Agence Plateau, Boutique Sea Plaza">
+      <input id="s-ville" placeholder="Ville (Dakar, Thiès…)">
+      <button class="btn" onclick="addSite()">Ajouter</button></div>
+    <div class="card"><h3>3. Emplacement</h3>
+      <select id="l-site"></select>
+      <input id="l-nom" placeholder="Ex. Accueil, Guichet 2, Table 7, Chambre 204">
+      <button class="btn" onclick="addEmplacement()">Ajouter</button></div>
+  </div>
+  <h3>Structure</h3>
+  <div id="a-list"></div>
+</section>
+
+<!-- QR -->
+<section id="v-qrs" class="view">
+  <div class="card"><b>Chaque QR est signé</b> (HMAC-SHA256 : entreprise + site + emplacement + date). Un QR copié ou modifié est rejeté ; un QR peut être révoqué à tout moment. Imprimez-les et placez-les à l'accueil, aux caisses, aux tables ou en zone d'attente.</div>
+  <div id="q-list"></div>
+</section>
+
+<!-- Formulaire client (mobile) -->
+<section id="v-scan" class="view">
+  <div class="phone">
+    <div class="card">
+      <div id="f-alert" class="alert" style="display:none"></div>
+      <div id="f-form">
+        <small id="f-ctx">Scannez un QR (ou utilisez « Simuler scan » dans l'onglet QR signés).</small>
+        <h3>Comment s'est passée votre visite ?</h3>
+        <div class="stars" id="f-stars"></div>
+        <label>Sujet</label><select id="f-cat"></select>
+        <label>Commentaire (facultatif)</label><textarea id="f-com" rows="3" placeholder="Dites-nous ce qui pourrait être amélioré"></textarea>
+        <button class="btn" style="width:100%" onclick="sendFeedback()">Envoyer</button>
+        <p><small>Réponse anonyme · 20 secondes · attribuée à ce lieu uniquement</small></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<script src="app.js"></script>
+</body>
+</html>
