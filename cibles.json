@@ -1,0 +1,14 @@
+{
+  "segments": [
+    {"nom":"Banques et télécoms","proposition":"Traçabilité par agence, détection des QR copiés, amélioration de la qualité d'accueil","message":"Sachez quel guichet, quelle agence et quel moment génèrent les frictions.",
+     "cibles":["Sonatel / Orange Sénégal","Free Sénégal","CBAO Attijariwafa Bank","Société Générale Sénégal","Banque Atlantique Sénégal","Ecobank Sénégal","BSIC Sénégal"]},
+    {"nom":"Hôtels et restaurants","proposition":"Retours instantanés par table, chambre, salle ou service","message":"Transformez chaque table et chaque chambre en point d'écoute.",
+     "cibles":["Terrou-Bi","King Fahd Palace Hotel","Radisson Blu Hotel Dakar","Noom Hôtel Dakar Sea Plaza","L'Adresse Dakar","La Marée Chez Adji"]},
+    {"nom":"Distribution","proposition":"Mesure par magasin, caisse, rayon et équipe","message":"Identifiez les points de vente qui perdent la satisfaction client.",
+     "cibles":["Auchan Sénégal","Casino / Citydia","Total Sénégal","Vivo Energy Sénégal"]},
+    {"nom":"Services publics","proposition":"Preuve de passage, qualité d'accueil, réclamations terrain","message":"Rendez le service de proximité mesurable et améliorable.",
+     "cibles":["Senelec","Sénégalaise des Eaux (SDE)","La Poste du Sénégal","Dakar Dem Dikk","Aéroport LSS"]},
+    {"nom":"PME","proposition":"Outil simple, sans abonnement lourd ni dépendance à un service tiers","message":"Vos QR de feedback, contrôlés et exportables par vous.",
+     "cibles":["Pharmacies, cliniques, laboratoires","Écoles et centres de formation","Agences immobilières","Concessionnaires automobiles","Agences de voyage / DMC","Boulangeries, salons, fitness","Sécurité, nettoyage, facilities"]}
+  ]
+}
